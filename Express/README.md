@@ -1,3 +1,3 @@
 Resources for [Express](http://expressjs.com/)
 
-- [Cheat sheet](https://github.com/azat-co/cheatsheets/tree/master/express4)
+[Express Cheat sheet](https://github.com/azat-co/cheatsheets/tree/master/express4)
