@@ -1,5 +1,3 @@
-# Express Links
+Resources for [Express](http://expressjs.com/)
 
-[Express Routing- The Beginners Guide](http://jilles.me/express-routing-the-beginners-guide/)
-
-[Express JS and Express Generator Module Basics, Express JS Sample WebApplication](http://www.journaldev.com/7993/nodejs-express-js-and-express-generator-module-basics)
+- [Cheat sheet](https://github.com/azat-co/cheatsheets/tree/master/express4)
