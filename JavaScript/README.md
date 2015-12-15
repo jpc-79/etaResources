@@ -6,6 +6,8 @@
 
 [JavaScript for Cats](http://jsforcats.com/)
 
+[JavaScript Promises](http://www.html5rocks.com/en/tutorials/es6/promises/)
+
 ## Libraries
 
 [Sortable library](http://rubaxa.github.io/Sortable/)
