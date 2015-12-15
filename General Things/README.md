@@ -7,5 +7,7 @@ via Adia
 Combines multiple API documentations in a fast, organized, and searchable interface.
 
 [Bob Ross Ipsum Generator](http://www.bobrosslipsum.com/)
+Bob Ross quotes generator
 
 [Place Corgi](http://placecorgi.com/)
+Corgi images for your development pleasure.
