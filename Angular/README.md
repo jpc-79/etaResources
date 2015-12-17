@@ -15,3 +15,6 @@
 [Angular Routing](https://docs.angularjs.org/tutorial/step_07)
 
 [Promises in AngularJS, Explained As A Cartoon](http://andyshora.com/promises-angularjs-explained-as-cartoon.html)
+
+[Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
+A starting point for Angular development teams to provide consistency through good practices.
