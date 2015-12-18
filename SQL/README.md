@@ -8,3 +8,5 @@ Bookshelf is a JavaScript ORM for Node.js, built on the Knex SQL query builder. 
 Sequelize is a promise-based ORM for Node.js and io.js. It supports the dialects PostgreSQL, MySQL, MariaDB, SQLite and MSSQL and features solid transaction support, relations, read replication and more.
 
 [Learn SQL The Hard Way](http://sql.learncodethehardway.org/book/)
+
+[Codecademy: SQL Analyzing Business Metrics](https://www.codecademy.com/learn/sql-analyzing-business-metrics)
