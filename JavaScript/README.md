@@ -8,6 +8,8 @@
 
 [JavaScript Promises](http://www.html5rocks.com/en/tutorials/es6/promises/)
 
+[Joseph's JavaScript Challenge-Holiday Edition](https://docs.google.com/document/d/1FsMLLRmsl39edoov9cpGy1RNAb427zR5jm7ukVGZv-4/edit)
+
 ## Libraries
 
 [Sortable library](http://rubaxa.github.io/Sortable/)
