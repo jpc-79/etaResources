@@ -4,6 +4,8 @@
 
 [Kickstart Your Next Project with a Walking Skeleton](http://blog.codeclimate.com/blog/2014/03/20/kickstart-your-next-project-with-a-walking-skeleton/)
 
+[A MEAN stack example of how to upload a file from a form in Angular JS using ngFileupload, and saving the file to a folder using Multer in Express/Node.](https://github.com/NukaPunk/mean-multer-ngf)
+
 
 ## Michael Herman Tutorials
 
