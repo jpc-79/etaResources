@@ -10,3 +10,5 @@ Sequelize is a promise-based ORM for Node.js and io.js. It supports the dialects
 [Learn SQL The Hard Way](http://sql.learncodethehardway.org/book/)
 
 [Codecademy: SQL Analyzing Business Metrics](https://www.codecademy.com/learn/sql-analyzing-business-metrics)
+
+[Node Authentication, migration from mongoose to sequelize](http://anneblankert.blogspot.com/2015/06/node-authentication-migrate-from.html)
