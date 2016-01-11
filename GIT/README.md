@@ -1,5 +1,7 @@
 # GIT Links
 
+[Markdown Basics (for writing README.MD)](https://help.github.com/articles/markdown-basics/)
+
 [Pro Git](https://progit.org/)
 
 [Git Memes](http://wheningit.tumblr.com/)
