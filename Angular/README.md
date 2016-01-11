@@ -10,6 +10,8 @@
 
 [A Practical Guide To AngularJS Directives](http://www.sitepoint.com/practical-guide-angularjs-directives/)
 
+[Todd Motto's guide to learning Angular in one day](https://toddmotto.com/ultimate-guide-to-learning-angular-js-in-one-day/)
+
 [Official Angular Documentation Tutorial](https://docs.angularjs.org/tutorial)
 
 [Angular Routing](https://docs.angularjs.org/tutorial/step_07)
