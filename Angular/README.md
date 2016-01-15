@@ -1,5 +1,7 @@
 # Angular Links
 
+[Angular JS Basics](https://docs.google.com/document/d/1f0wJTodBe4pzmEnycltZfaH5ug-UEH4VEx5Kst7lrpg/edit#)
+
 [10 Best Tutorials to Learn AngularJS](file:///Users/crimmings/Desktop/eta%20links/Angular/10%20Best%20Tutorials%20To%20Learn%20AngularJS%20-%20Hongkiat.html)
 
 [Angular YouTube](https://www.youtube.com/user/angularjs)
