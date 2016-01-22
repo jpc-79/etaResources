@@ -19,3 +19,5 @@
 [Sortable library](http://rubaxa.github.io/Sortable/)
 
 [Underscore library](http://underscorejs.org/)
+
+[ES6 Cheatsheet] (https://github.com/DrkSephy/es6-cheatsheet)
