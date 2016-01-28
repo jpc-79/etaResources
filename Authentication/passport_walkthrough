@@ -1,0 +1,280 @@
+npm Passport is authentication middleware for Node.js. 
+
+It’s extremely flexible and modular and can be dropped in to any Express-based web application, and can authenticate users via many different authentication mechanisms called “strategies”.
+
+Strategies are packaged as individual modules so you can choose which strategies to employ, without creating unnecessary dependencies.
+
+Let’s add Passport to our application.
+
+npm install passport --save
+
+To use it, we need to require it in app.js (our main application file).
+
+var passport = require('passport');
+
+Passport uses sessions. Session provides a way to identify a user across more than one page request or visit to a Web site and to store information about that user. 
+
+We have to install and use  express-session:
+
+npm install express-session --save
+
+var session = require('express-session');
+
+app.use(session({
+   secret: 'secret',
+   key: 'user',
+   resave: true,
+   saveUninitialized: false,
+   cookie: { maxAge: 60000, secure: false }
+}));
+
+The most widely used way for websites to authenticate users is via a username and password. Support for this mechanism is provided by the “passport-local” module.
+
+Let’s add Passport-Local to our application:
+
+npm install passport-local --save
+
+To use it, we need to require it in app.js, and get a reference to the module’s strategy object.
+
+var localStrategy = require('passport-local').Strategy;
+
+We need to initialize passport:
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+Now, we have to tell passport which strategy to use inside our app.js file. 
+
+passport.use('local', new localStrategy({ passReqToCallback : true, usernameField: 'username' },
+   function(req, username, password, done) {
+   }
+));
+
+
+The verify callback for local authentication accepts username and password arguments, which are submitted to the application via a login form. Inside this form we’ll authenticate users. However, we don’t have users set up correctly yet.
+
+So, we need to create a user model in Mongo. Make sure you have Mongoose installed.
+
+npm install mongoose --save
+
+Require mongoose and add a mongo connection to our app.js file (give it a unique document store name).
+
+var mongoose = require('mongoose');
+
+// Mongo setup
+var mongoURI = "mongodb://localhost:27017/prime_example_passport";
+var MongoDB = mongoose.connect(mongoURI).connection;
+
+MongoDB.on('error', function (err) {
+   console.log('mongodb connection error', err);
+});
+
+MongoDB.once('open', function () {
+ console.log('mongodb connection open');
+});
+
+Next, we’re going to add a user.js file to the models folder.
+
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    bcrypt = require('bcrypt'),
+    SALT_WORK_FACTOR = 10;
+
+var UserSchema = new Schema({
+    username: { type: String, required: true, index: { unique: true } },
+    password: { type: String, required: true }
+});
+
+module.exports = mongoose.model('User', UserSchema);
+
+Notice the bcrypt and SALT_WORK_FACTOR references. The purpose of the salt is to defeat rainbow table attacks and to resist brute-force attacks in the event that someone has gained access to your database. I suggest you look up rainbow table attacks and brute-force attacks in regards to hashing.
+
+To avoid these attacks we’ll use a module called bcrypt. bcrypt uses a “key setup phase” that makes computing passwords computationally expensive. Computing one with known salts is easy, but computing many is hard, which is actually a good thing when trying to thwart brute-force attacks. The number of phases is set by the work factor. More on that at the end.
+
+For now, install bcrypt.
+
+npm install bcrypt --save
+
+Inside the same user.js file, we hash passwords before user documents are saved to MongoDB. 
+UserSchema.pre('save', function(next) {
+   var user = this;
+
+   // only hash the password if it has been modified (or is new)
+   if (!user.isModified('password')) return next();
+
+   // generate a salt
+   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+       if (err) return next(err);
+
+       // hash the password along with our new salt
+       bcrypt.hash(user.password, salt, function(err, hash) {
+           if (err) return next(err);
+
+           // override the cleartext password with the hashed one
+           user.password = hash;
+           next();
+       });
+   });
+});
+
+Also create a convenience method for comparing passwords later on.
+
+UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+       if (err) return cb(err);
+       cb(null, isMatch);
+   });
+};
+
+The user’s password plus some extra random “salt” is sent through a one-way function to compute a hash. This way each user’s password is uniquely encrypted.
+
+Back in app.js we can add the rest of our authentication strategy.  Require our newly created user in app.js
+
+var User = require('./models/user');
+
+
+Then create the rest of the function for authenticating users. Serialize and deserialize allow user information to be stored and retrieved from session.
+
+passport.serializeUser(function(user, done) {
+   done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+   User.findById(id, function(err,user){
+       if(err) done(err);
+       done(null,user);
+   });
+});
+
+passport.use('local', new localStrategy({
+       passReqToCallback : true,
+       usernameField: 'username'
+   },
+function(req, username, password, done){
+   User.findOne({ username: username }, function(err, user) {
+       if (err) throw err;
+       if (!user)
+           return done(null, false, {message: 'Incorrect username and password.'});
+
+       // test a matching password
+       user.comparePassword(password, function(err, isMatch) {
+           if (err) throw err;
+           if(isMatch)
+               return done(null, user);
+           else
+               done(null, false, { message: 'Incorrect username and password.' });
+       });
+   });
+}));
+
+Next create an index.html page and add a login form.
+
+<form action="/" method="post">
+   <div>
+       <label for="username">Username:</label>
+       <input type="text" name="username" id="username"/>
+   </div>
+   <div>
+       <label for="password">Password:</label>
+       <input type="password" name="password" id="password"/>
+   </div>
+   <div>
+       <input type="submit" value="Log In"/>
+       <a href="/register">Register</a>
+   </div>
+</form>
+
+Create a route for the new index file. Passport.authenticate is specifying our ‘local’ strategy that we created, and specifies a failure and success redirect.
+
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+var path = require('path');
+
+router.get("/", function(req,res,next){
+   res.sendFile(path.resolve(__dirname, '../views/index.html'));
+});
+
+router.post('/',
+   passport.authenticate('local', {
+       successRedirect: '/users',
+       failureRedirect: '/'
+   })
+);
+//Note: Users at this point should point to an HTML file. So an example would be, 
+successRedirect: "/assets/views/users.html",
+This would mean that you actually need to create this page to be served back to the client side.
+
+module.exports = router;
+
+We also need a way for users to register. Create a register.html file with the following form in it:
+
+<form action="/register" method="post">
+   <div>
+       <label for="username">Username:</label>
+       <input type="text" name="username" id="username"/>
+   </div>
+   <div>
+       <label for="password">Password:</label>
+       <input type="password" name="password" id="password"/>
+   </div>
+   <div>
+       <input type="submit" value="Register"/>
+   </div>
+</form>
+
+Also create a register.js route file. Remember, the pre-save function will encrypt the passwords for us!
+
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+var path = require('path');
+var Users = require('../models/user');
+
+router.get('/', function(req, res, next){
+   res.sendFile(path.resolve(__dirname, '../views/register.html'));
+});
+
+router.post('/', function(req,res,next) {
+   Users.create(req.body, function (err, post) {
+       if (err)
+           next(err);
+       else
+           res.redirect('/users');
+   })
+});
+
+module.exports = router;
+
+Add a register route to app.js:
+
+var register = require('./routes/register');
+
+app.use('/register', register);
+
+Finally, let’s test user.isAuthenticated() in the users.js route
+//Note: you will need to create this route, so in your routes file, create a users.js file, inside of it, you will need to include:
+var express = require('express');
+var router = express.Router();
+
+router.get('/', function(req, res, next) {
+   res.json(req.isAuthenticated());
+});
+
+module.exports = router;
+This alone will do nothing, but if you do a call from the client (a GET request) to the ‘/users’ route, and then console log out the response in the success callback function, you will see what the server sends back for whether or not the user is authenticated. 
+
+router.get('/', function(req, res, next) {
+ res.json(req.isAuthenticated());
+});
+
+Once you’ve got users saving to the database, go look at their “password” field with Robomongo. When stored in the database, a bcrypt "hash" might look something like this:
+
+$2a$10$vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa
+
+2a identifies the bcrypt algorithm version that was used.
+10 is the cost factor; 210 iterations of the key derivation function are used (which is not enough, by the way. I'd recommend a cost of 12 or more.)
+vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa is the salt and the cipher text, concatenated and encoded in a modified Base-64. The first 22 characters decode to a 16-byte value for the salt. The remaining characters are cipher-text to be compared for authentication.
+‘$’ are used as delimiters for the header section of the hash.
+
+That’s it! You have users authenticating and you’re storing encrypted passwords! Have a sticker. (See next page)
