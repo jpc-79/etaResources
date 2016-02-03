@@ -6,6 +6,8 @@
 
 [Easy Node Authentication with Passport](https://scotch.io/courses/easy-node-authentication)
 
+[Passport Walkthrough](https://docs.google.com/document/d/1yOROAhJubr9snb9Dic5bIrc_nraDP7CpJeglL-L1KbU/edit)
+
 [Role Based Authentication](http://arthur.gonigberg.com/2013/06/29/angularjs-role-based-auth/)
 
 [MEAN Stack/Passport local(client focused)](http://mherman.org/blog/2015/07/02/handling-user-authentication-with-the-mean-stack/#.Vq4s7lMrKu6)
