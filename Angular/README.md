@@ -24,3 +24,7 @@
 A starting point for Angular development teams to provide consistency through good practices.
 
 [A MEAN stack example of how to upload a file from a form in Angular JS using ngFileupload, and saving the file to a folder using Multer in Express/Node.](https://github.com/NukaPunk/mean-multer-ngf)
+
+[Joel's Angular Factory Lecture](https://github.com/joeltmiller/AngularJS-Factory-Lecture)
+
+[Joel's Angular http](https://github.com/joeltmiller/Angular-Factory-http)
