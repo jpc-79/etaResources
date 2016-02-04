@@ -1,5 +1,8 @@
 # JavaScript Links
 
+[JS Tips](https://github.com/loverajoel/jstips)
+Daily JavaScript tips.
+
 [11 Online JavaScript Tutorials](http://www.skilledup.com/articles/best-free-javascript-tutorials-language-interaction)
 
 [JavaScript Exercises](http://www.w3resource.com/javascript-exercises/)
