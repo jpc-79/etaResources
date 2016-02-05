@@ -28,3 +28,5 @@ A starting point for Angular development teams to provide consistency through go
 [Joel's Angular Factory Lecture](https://github.com/joeltmiller/AngularJS-Factory-Lecture)
 
 [Joel's Angular http](https://github.com/joeltmiller/Angular-Factory-http)
+
+[Exploring Angular 2](http://blog.thoughtram.io/exploring-angular-2/)
