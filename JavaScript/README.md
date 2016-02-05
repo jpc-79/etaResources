@@ -17,10 +17,13 @@ Daily JavaScript tips.
 
 [Joseph's JavaScript Challenge-Holiday Edition](https://docs.google.com/document/d/1FsMLLRmsl39edoov9cpGy1RNAb427zR5jm7ukVGZv-4/edit)
 
+[ES6 Cheatsheet] (https://github.com/DrkSephy/es6-cheatsheet)
+
 ## Libraries
 
 [Sortable library](http://rubaxa.github.io/Sortable/)
 
 [Underscore library](http://underscorejs.org/)
 
-[ES6 Cheatsheet] (https://github.com/DrkSephy/es6-cheatsheet)
+[LoudLinks](http://loudlinks.rocks)
+LoudLinks
