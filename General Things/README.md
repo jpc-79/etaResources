@@ -1,5 +1,7 @@
 # Open Source Links
 
+[Learn X in Y Minutes](https://learnxinyminutes.com/)
+
 [KRITA: open source software for concept artists, digital painters, and illustrators](https://krita.org)
 via Adia
 
