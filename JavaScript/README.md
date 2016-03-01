@@ -17,7 +17,9 @@ Daily JavaScript tips.
 
 [Joseph's JavaScript Challenge-Holiday Edition](https://docs.google.com/document/d/1FsMLLRmsl39edoov9cpGy1RNAb427zR5jm7ukVGZv-4/edit)
 
-[ES6 Cheatsheet] (https://github.com/DrkSephy/es6-cheatsheet)
+[ES6 Cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)
+
+[Learning JavaScript Native Functions](https://scotch.io/tutorials/learning-javascript-native-functions-and-how-to-use-them?utm_source=feedblitz&utm_medium=FeedBlitzRss&utm_campaign=scotch_io)
 
 ## Libraries
 
