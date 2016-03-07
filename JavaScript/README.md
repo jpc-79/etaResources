@@ -21,6 +21,9 @@ Daily JavaScript tips.
 
 [Learning JavaScript Native Functions](https://scotch.io/tutorials/learning-javascript-native-functions-and-how-to-use-them?utm_source=feedblitz&utm_medium=FeedBlitzRss&utm_campaign=scotch_io)
 
+[Superhero.js](http://superherojs.com)
+Collection of articles, videos, and presentations on javascript.
+
 ## Libraries
 
 [Sortable library](http://rubaxa.github.io/Sortable/)
